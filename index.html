@@ -9,6 +9,9 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
+    /* KaTeX for mathematical formulas */
+    @import url('https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css');
+
     :root {
       --bg-color: #e4ebf5;
       --shadow-light: #ffffff;
@@ -182,10 +185,65 @@
       box-shadow: 6px 6px 12px var(--shadow-dark),
         -6px -6px 12px var(--shadow-light);
     }
+
+    .equation-box {
+      background: var(--bg-color);
+      padding: 1rem 3rem;
+      border-radius: 20px;
+      box-shadow: 8px 8px 16px var(--shadow-dark),
+        -8px -8px 16px var(--shadow-light);
+      margin-bottom: 2.5rem;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .download-btn {
+      margin-top: 2.5rem;
+      padding: 1rem 2.5rem;
+      background: var(--bg-color);
+      border: none;
+      border-radius: 15px;
+      color: var(--text-dark);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 8px 8px 16px var(--shadow-dark),
+        -8px -8px 16px var(--shadow-light);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .download-btn:hover {
+      color: var(--accent);
+      box-shadow: 4px 4px 8px var(--shadow-dark),
+        -4px -4px 8px var(--shadow-light);
+    }
+
+    .download-btn:active {
+      box-shadow: inset 4px 4px 8px var(--shadow-dark),
+        inset -4px -4px 8px var(--shadow-light);
+    }
+
+    /* Adjust KaTeX font size */
+    .equation-box .katex {
+      font-size: 1.4em;
+    }
   </style>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body);"></script>
 </head>
 
 <body>
+
+  <div class="equation-box">
+    $$ \left| \frac{x}{a} \right|^n + \left| \frac{y}{b} \right|^n = 1 $$
+  </div>
 
   <div class="container">
     <div class="controls">
@@ -213,6 +271,16 @@
 
     <div id="canvas-container"></div>
   </div>
+
+  <button id="downloadBtn" class="download-btn">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+      <polyline points="7 10 12 15 17 10"></polyline>
+      <line x1="12" y1="15" x2="12" y2="3"></line>
+    </svg>
+    Download as .svg
+  </button>
 
   <script src="sketch.js"></script>
 </body>
